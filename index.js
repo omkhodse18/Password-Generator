@@ -1,33 +1,36 @@
-const inputSlider = document.querySelector("[data-length-slider]");
-const lengthDisplay = document.querySelector("[data-length-number]");
-const passwordDisplay = document.querySelector("[data-password-diplay]");
+const inputSlider = document.querySelector("[data-lengthSlider]");
+const lengthDisplay = document.querySelector("[data-lengthNumber]");
+const passwordDisplay = document.querySelector("[data-passwordDisplay]");
 const copyBtn = document.querySelector("[data-copy]");
-const copyMsg = document.querySelector("[data-copy-msg]");
-const upperCaseCheck = document.querySelector("#uppercase");
-const lowerCaseCheck = document.querySelector("#lowercase");
+const copyMsg = document.querySelector("[data-copyMsg]");
+const uppercaseCheck = document.querySelector("#uppercase");
+const lowercaseCheck = document.querySelector("#lowercase");
 const numbersCheck = document.querySelector("#numbers");
 const symbolsCheck = document.querySelector("#symbols");
 const indicator = document.querySelector("[data-indicator]");
-const generateBtn = document.querySelector(".generate-button");
+const generateBtn = document.querySelector(".generateButton");
 const allCheckBox = document.querySelectorAll("input[type=checkbox]");
 
 // initial value set
 let password="";
 let passwordlength = 10;
 let checkCount = 0;
-// strenth color set to gray
-
+setIndicator("#ccc");
 handleSlider();
 
 // Set password length
 function handleSlider(){
     inputSlider.value = passwordlength;
     lengthDisplay.innerText = passwordlength;
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+    inputSlider.style.backgroundSize = ( (passwordlength - min)*100/(max - min)) + "% 100%"
 }
 
 // Set color
 function setIndicator(color){
     indicator.style.backgroundColor = color;
+    indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 
 function getRandomInt(min, max){
